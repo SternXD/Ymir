@@ -640,6 +640,9 @@ target_compile_definitions(ymir-sdl3 PUBLIC Ymir_ENABLE_IMGUI_DEMO=$<BOOL:${Ymir
 target_compile_definitions(ymir-sdl3 PUBLIC Ymir_ENABLE_UPDATE_CHECKS=$<BOOL:${Ymir_ENABLE_UPDATE_CHECKS}>)
 target_compile_definitions(ymir-sdl3 PUBLIC Ymir_ORGANIZATION_NAME="StrikerX3")
 target_compile_definitions(ymir-sdl3 PUBLIC Ymir_APP_NAME="${PROJECT_NAME}")
+if (Ymir_FF_ENABLE_UNIMPL_GFX_BACKENDS)
+    target_compile_definitions(ymir-sdl3 PUBLIC YMIR_ENABLE_UNIMPL_GFX_BACKENDS)
+endif ()
 
 ## Apply performance options
 if (Ymir_AVX2)

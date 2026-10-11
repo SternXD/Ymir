@@ -24,11 +24,10 @@ Introduces save state file version 14.
 - Debugger: Added RBG0 and RBG1 line color single stack views to the VDP2 debug overlay.
 - Debugger: Added basic VDP2 registers view.
 - Graphics: New graphics backend, adding support for native graphics APIs:
-    - Direct3D 11 on Windows (TBD)
     - Direct3D 12 on Windows (@StrikerX3)
-    - Vulkan on Windows and Linux (TBD)
     - Metal on macOS (#929; @SternXD)
     - SDL Renderer wherever it's supported (@StrikerX3)
+    - Vulkan and Direct3D 11 didn't make it in time for this release
 - Input: Added option to constrain mouse cursor to window in system cursor mode.
 - Input: Convert 3D Control Pad analog stick to D-Pad inputs when in digital mode.
 - Input: Graduate Virtua Gun to stable feature.
@@ -41,8 +40,7 @@ Introduces save state file version 14.
         - Determine double density mode
         - Get references to VDP1 registers
         - Shift/mask color bank values
-- VDP1/VDP2: Hardware-accelerated rendering is now available. Supported graphics backends:
-    - Direct3D 12 on Windows (@StrikerX3)
+- VDP1/VDP2: Hardware-accelerated rendering with Direct3D 12 is now available.
 
 ### Fixes
 

@@ -60,6 +60,7 @@ endif ()
 ## option(Ymir_FF_[NAME] "[description]" [default-state])
 ##   default state is a BOOL, usually OFF or ${Ymir_LOCAL_BUILD}
 option(Ymir_FF_HOST_CD_DRIVES "Enable support for reading discs from host drives" ${Ymir_LOCAL_BUILD})
+option(Ymir_FF_ENABLE_UNIMPL_GFX_BACKENDS "Enable unimplemented graphics backends" ${Ymir_LOCAL_BUILD})
 
 if (Ymir_LIBRARY_ONLY)
     message(STATUS "Ymir: Library-only build")
@@ -76,6 +77,7 @@ message(STATUS "Ymir: Update checks ${Ymir_ENABLE_UPDATE_CHECKS}")
 message(STATUS "Ymir: Feature flags:")
 #message(STATUS "- [Name]: ${Ymir_FF_[NAME]}")
 message(STATUS "- Host CD drives: ${Ymir_FF_HOST_CD_DRIVES}")
+message(STATUS "- Unimplemented graphics backends: ${Ymir_FF_ENABLE_UNIMPL_GFX_BACKENDS}")
 
 # Create Universal Binary on MacOS
 #if (APPLE)

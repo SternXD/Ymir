@@ -27,13 +27,18 @@ enum class Backend {
 inline constexpr Backend kGraphicsBackends[] = {
     Backend::Null,
 #if YMIR_PLATFORM_HAS_DIRECT3D
-    Backend::Direct3D11,  Backend::Direct3D12,
+    #ifdef YMIR_ENABLE_UNIMPL_GFX_BACKENDS // TODO: remove this guard when implemented
+    Backend::Direct3D11,
+    #endif
+    Backend::Direct3D12,
 #endif
 #if YMIR_PLATFORM_HAS_METAL
     Backend::Metal,
 #endif
 #if YMIR_PLATFORM_HAS_VULKAN
+    #ifdef YMIR_ENABLE_UNIMPL_GFX_BACKENDS // TODO: remove this guard when implemented
     Backend::Vulkan,
+    #endif
 #endif
     Backend::SDLRenderer,
 };

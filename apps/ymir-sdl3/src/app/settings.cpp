@@ -513,14 +513,18 @@ static const char *ToTOML(const gfx::Backend value) {
     switch (value) {
     default: return "Default";
 #if YMIR_PLATFORM_HAS_DIRECT3D
+    #ifdef YMIR_ENABLE_UNIMPL_GFX_BACKENDS // TODO: remove this guard when implemented
     case gfx::Backend::Direct3D11: return "Direct3D11";
+    #endif
     case gfx::Backend::Direct3D12: return "Direct3D12";
 #endif
 #if YMIR_PLATFORM_HAS_METAL
     case gfx::Backend::Metal: return "Metal";
 #endif
 #if YMIR_PLATFORM_HAS_VULKAN
+    #ifdef YMIR_ENABLE_UNIMPL_GFX_BACKENDS // TODO: remove this guard when implemented
     case gfx::Backend::Vulkan: return "Vulkan";
+    #endif
 #endif
     case gfx::Backend::SDLRenderer: return "SDLRenderer";
     }
