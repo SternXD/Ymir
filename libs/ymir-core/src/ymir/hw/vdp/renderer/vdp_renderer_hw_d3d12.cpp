@@ -862,7 +862,7 @@ struct Direct3D12VDPRenderer::Impl {
             return util::ErrorMessage{
                 fmt::format("Could not build root signature \"{}\", error code {:X}", spec.name, (uint32)hr)};
         }
-        vdp1.fbramWriteRootSig->SetName(util::StringToWString(spec.name).c_str());
+        rootSig->SetName(util::StringToWString(spec.name).c_str());
         return {};
     }
 
@@ -893,7 +893,7 @@ struct Direct3D12VDPRenderer::Impl {
             return util::ErrorMessage{
                 fmt::format("Could not build pipeline state object \"{}\", error code {:X}", name, (uint32)hr)};
         }
-        vdp1.fbramWritePSO->SetName(util::StringToWString(name).c_str());
+        pso->SetName(util::StringToWString(name).c_str());
         return {};
     }
 
