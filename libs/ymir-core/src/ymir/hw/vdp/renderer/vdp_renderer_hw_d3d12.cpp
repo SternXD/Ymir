@@ -1868,7 +1868,7 @@ struct Direct3D12VDPRenderer::Impl {
 
             // VDP2 sprite attributes 2D texture array
             if (auto result =
-                    Create2DTextureArray(frameCtx.spriteAttrsTexture, DXGI_FORMAT_R8_UINT, kMaxResH, kMaxResV, 2,
+                    Create2DTextureArray(frameCtx.spriteAttrsTexture, DXGI_FORMAT_R16_UINT, kMaxResH, kMaxResV, 2,
                                          {
                                              .srv = &frameCtx.spriteAttrsSRV,
                                              .uav = &frameCtx.spriteAttrsUAV,
