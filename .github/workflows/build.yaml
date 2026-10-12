@@ -57,7 +57,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Get project version
     outputs:
-      cmake-project-version: ${{ steps.project-version.outputs.cmake-project-version }}
       project-version: ${{ steps.project-version.outputs.project-version }}
       project-version-unfiltered: ${{ steps.project-version.outputs.project-version-unfiltered }}
       build-timestamp: ${{ steps.project-version.outputs.build-timestamp }}
@@ -77,7 +76,6 @@ jobs:
           else
             export PROJ_VER="${GITHUB_REF_NAME}"
           fi
-          echo "cmake-project-version=$(sed -nr "s/project\(Ymir\s+VERSION\s+(\S+)\)/\1/p" CMakeLists.txt)" >> "$GITHUB_OUTPUT"
           echo "project-version=${PROJ_VER//+/_}" >> "$GITHUB_OUTPUT"
           echo "project-version-unfiltered=${PROJ_VER}" >> "$GITHUB_OUTPUT"
           echo "build-timestamp=$(date +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
@@ -556,8 +554,9 @@ jobs:
           cp -f ${{ github.workspace }}/gcdb/gamecontrollerdb.txt gamecontrollerdb.txt
           zip -r ${{ github.workspace }}/${{ steps.strings.outputs.ymir-artifact-name }}.zip licenses README.md CHANGELOG.md TROUBLESHOOTING.md gamecontrollerdb.txt
           cd ${{ github.workspace }}/build/apps/ymir-sdl3/
+          target="$(readlink -f ymir-sdl3.app/Contents/MacOS/ymir-sdl3)"
           rm ymir-sdl3.app/Contents/MacOS/ymir-sdl3
-          mv ymir-sdl3.app/Contents/MacOS/ymir-sdl3-${{ needs.get-project-version.outputs.cmake-project-version }} ymir-sdl3.app/Contents/MacOS/ymir-sdl3
+          mv "$target" ymir-sdl3.app/Contents/MacOS/ymir-sdl3
           codesign --force --deep --sign - ymir-sdl3.app
           zip -r ${{ github.workspace }}/${{ steps.strings.outputs.ymir-artifact-name }}.zip ymir-sdl3.app
 
