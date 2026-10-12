@@ -2205,6 +2205,9 @@ struct Direct3D12VDPRenderer::Impl {
         // No longer dirty
         vdp1.fbramDirty.ClearAll();
 
+        // Mark GPU-side FBRAM as dirty
+        vdp1.fbramReadbackDirty = true;
+
         return {};
     }
 
