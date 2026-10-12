@@ -101,6 +101,7 @@ Introduces save state file version 14.
 - SCSP: Clear slot PLFOS on reset. (thanks to @celeriyacon)
 - SCSP: Handle rare one-shot PCM bug. (thanks to @celeriyacon)
 - SCU: Allow 8-bit writes to DSP registers.
+- SCU: Ignore DMA writes to VDP1 registers. Fixes GunBlaze-S not booting. (#410)
 - Settings: Apply CD Block LLE configuration at startup. Fixes Ymir always launching with CD Block HLE mode when LLE was enabled in the settings file.
 - SMPC: Ignore SSHON command when the Slave SH2 is already enabled. Fixes multiple issues:
     - Guardian Heroes no longer gets stuck on level transitions. (#951)
