@@ -21,8 +21,9 @@ Introduces save state file version 14.
     - The old `smpc.bin` will be automatically migrated to these files as you use IPL ROMs for each region.
 - App: Shrink embedded M PLUS U font files by removing unused glyphs, reducing binary size. (#915; @4re)
 - Build: Lower macOS version requirement to 12.0 Monterey. (#954)
-- Debugger: Added RBG0 and RBG1 line color single stack views to the VDP2 debug overlay.
-- Debugger: Added basic VDP2 registers view.
+- Debugger (SH2): Break when PC is unaligned or in an illegal area while debug tracing is enabled.
+- Debugger (VDP2): Added RBG0 and RBG1 line color single stack views to the VDP2 debug overlay.
+- Debugger (VDP2): Added basic VDP2 registers view.
 - Graphics: New graphics backend, adding support for native graphics APIs:
     - Direct3D 12 on Windows (@StrikerX3)
     - Metal on macOS (#929; @SternXD)
