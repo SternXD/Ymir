@@ -110,6 +110,11 @@ Introduces save state file version 14.
     - No-appointment Gals Olympos now goes in-game.
     - Ten Pin Alley now goes in-game.
     - UEFA Euro 96 - England now goes in-game. (#486)
+- SMPC: Tweak response delay for most commands to allow more games to boot:
+    - Destruction Derby (Europe)
+    - Fighting Vipers (Japan) (Rev A)
+    - Fist (Japan)
+    - Idol Mahjong - Final Romance R (Japan) and its Kisekae Discs
 - SMPC: Update peripheral PDR1/2 registers when reading and when updating EXLE. Fixes many cases of games not recognizing Virtua Gun inputs or missing shots. (#787)
 - VDP1: Don't clear COPR when beginning a new VDP1 frame. Fixes lockups in Alone in the Dark - Alone in the Dark - One-Eyed Jack's Revenge. (#938)
 - VDP1: Don't sync VDP1 FBRAM on debug reads. Fixes deadlock when viewing the framebuffer area in a memory viewer window.
