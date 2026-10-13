@@ -74,7 +74,7 @@ uint GetLoResInputX(uint x) {
 }
 
 uint GetLoResInputY(uint y) {
-    if (deinterlace && interlaceMode >= kInterlaceModeSingleDensity && !exclusiveMonitor) {
+    if (((deinterlace && interlaceMode == kInterlaceModeSingleDensity) || interlaceMode == kInterlaceModeDoubleDensity) && !exclusiveMonitor) {
         return y >> 1u;
     } else {
         return y;
