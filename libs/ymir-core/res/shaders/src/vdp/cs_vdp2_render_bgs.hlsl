@@ -965,7 +965,7 @@ uint SelectRotationParameter(const RBGParams params, uint2 pos) {
                 return transparent ? kRotParamB : kRotParamA;
             }
         case kRotParamModeWindow:
-            return InsideWindows(g_layerRenderParams[0].rotWindows, pos) ? kRotParamB : kRotParamA;
+            return InsideWindows(g_layerRenderParams[0].rotWindows, uint2(pos.x, GetY(pos.y, false))) ? kRotParamB : kRotParamA;
     }
     return kRotParamA; // shouldn't happen
 }
@@ -1105,7 +1105,7 @@ uint4 DrawRBG(uint2 pos, // pixel coordinates
         pos.y >>= 1;
     }
 
-    if (InsideWindows(params.base.windowParams, pos)) {
+    if (InsideWindows(params.base.windowParams, uint2(pos.x, GetY(pos.y, false)))) {
         return kTransparentPixel;
     }
 
@@ -1137,6 +1137,7 @@ bool InsideColorCalcWindow(uint2 pos) {
     ccWindows.base.window1Invert = BitTest(g_commonParams.windows, 9);
     ccWindows.spriteWindowEnable = BitTest(g_commonParams.windows, 10);
     ccWindows.spriteWindowInvert = BitTest(g_commonParams.windows, 11);
+    pos.y = GetY(pos.y, false);
     return InsideWindows(ccWindows, pos);
 }
 
