@@ -1436,7 +1436,7 @@ struct Direct3D12VDPRenderer::Impl {
                 .constantsSize = sizeof(VDP1CommonRenderParams) + sizeof(VDP1PolyDrawParams),
                 .numSRVs = 4,
                 .numUAVs = 3,
-                .name = "[Ymir-VDP1] Polygon drawing root OITsignature",
+                .name = "[Ymir-VDP1] Polygon drawing root OIT signature",
             };
             if (auto result = CreateRootSignature(vdp1.polyDrawOITRootSig, rootSigOITSpec); !result) {
                 return result;
