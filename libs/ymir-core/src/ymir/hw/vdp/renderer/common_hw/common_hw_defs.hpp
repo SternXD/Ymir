@@ -661,6 +661,10 @@ struct NBGParams {
     // Only valid for NBG0.
     // Based on CYCA0/A1/B0/B1 parameters.
     HLSLuint vcellScrollRepeat;
+
+    // Base Y coordinate for vertical scroll increment calculations.
+    // Only valid for NBG2 and NBG3.
+    HLSLuint scrollYIncBase;
 };
 
 /// @brief VDP2 RBG layer rendering parameters.
