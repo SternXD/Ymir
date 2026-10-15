@@ -110,6 +110,7 @@ Introduces save state file version 14.
     - No-appointment Gals Olympos now goes in-game.
     - Ten Pin Alley now goes in-game.
     - UEFA Euro 96 - England now goes in-game. (#486)
+- SMPC: Reserved SR bits in INTBACK status reports are all set. (thanks to @celeriyacon)
 - SMPC: Tweak response delay for most commands to allow more games to boot:
     - Destruction Derby (Europe)
     - Fighting Vipers (Japan) (Rev A)
