@@ -193,7 +193,11 @@ bool IsLineColorEnabled(uint layer, uint2 pos) {
 
 uint3 GetLineColor(uint layer, uint2 pos) {
     if (layer == kLayerRBG0 || (layer == kLayerNBG0_RBG1 && IsBGLayerEnabled(kBGLayerRBG1))) {
-        return g_rbgLineColorIn[uint3(GetLoResInputX(pos.x), GetLoResInputY(pos.y), layer - kLayerRBG0)].rgb;
+        uint y = pos.y;
+        if (deinterlace && IsInterlaced()) {
+            y >>= 1u;
+        }
+        return g_rbgLineColorIn[uint3(GetLoResInputX(pos.x), y, layer - kLayerRBG0)].rgb;
     }
     return g_lnclBackIn[GetLoResInputY(pos.y)].rgb;
 }
@@ -240,7 +244,7 @@ uint4 GetLayerOutput(uint layer, uint2 pos) {
         case kLayerNBG3:
             return g_layerIn[uint3(pos.xy, GetBGLayerIndex(layer))];
         case kLayerBack:
-            return g_lnclBackIn[GetLoResInputY(pos.y) + kMaxResV];
+            return g_lnclBackIn[GetLoResInputY(pos.y) + kMaxNormalResV];
         case kLayerLine:
             return g_lnclBackIn[GetLoResInputY(pos.y)];
         default:
@@ -272,7 +276,7 @@ uint3 Compose(uint2 basePos) {
         const bool borderColorMode = BitTest(g_commonParams.displayParams, 1);
         if (borderColorMode) {
             // Use back screen color
-            return g_lnclBackIn[GetLoResInputY(pos.y) + kMaxResV].rgb;
+            return g_lnclBackIn[GetLoResInputY(pos.y) + kMaxNormalResV].rgb;
         }
         return uint3(0, 0, 0);
     }

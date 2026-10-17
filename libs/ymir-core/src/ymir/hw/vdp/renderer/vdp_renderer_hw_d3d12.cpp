@@ -539,7 +539,7 @@ struct Direct3D12VDPRenderer::Impl {
         uint32 cramGeneration = 0;
 
         /// @brief CPU-side LNCL/BACK screen buffer (0=LNCL; 1=BACK).
-        std::array<std::array<ColorR8G8B8A8, kMaxResV>, 2> cpuLnclBack{};
+        std::array<std::array<ColorR8G8B8A8, kMaxNormalResV>, 2> cpuLnclBack{};
 
         /// @brief CPU-side VDP2 rotation parameter base values.
         std::array<VDP2RotParamBase, kMaxNormalResV * 2> cpuRotParamBases{};
@@ -1892,7 +1892,7 @@ struct Direct3D12VDPRenderer::Impl {
 
             // LNCL/BACK screen buffer
             if (auto result =
-                    CreatePrimitiveBuffer(frameCtx.lnclBackBuffer, DXGI_FORMAT_R8G8B8A8_UINT, kMaxResV * 2u,
+                    CreatePrimitiveBuffer(frameCtx.lnclBackBuffer, DXGI_FORMAT_R8G8B8A8_UINT, kMaxNormalResV * 2u,
                                           {
                                               .srv = &frameCtx.lnclBackSRV,
                                               .name = fmt::format("[Ymir-VDP2] LNCL/BACK screen buffer #{}", i),
