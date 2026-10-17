@@ -298,6 +298,7 @@ struct VDP2CommonRenderParams {
         HLSLuint vresMode : 2;             // 13-14  Vertical resolution mode   (VDP2 TVMD.VRESO1-0)
         HLSLuint dblInterlaceEnable : 1;   //    15  VDP1 double interlace enable flag (VDP1 FBCR.DIE)
         HLSLuint dblInterlaceDrawLine : 1; //    16  VDP1 double interlace draw line   (VDP1 FBCR.DIL)
+        HLSLuint firstInterlacedFrame : 1; //    17  VDP2 resolution changed to interlaced this frame?
     } displayParams;
     static_assert(sizeof(DisplayParams) == sizeof(HLSLuint));
 

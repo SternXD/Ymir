@@ -3439,6 +3439,7 @@ struct Direct3D12VDPRenderer::Impl {
     // -----------------------------------------------------------------------------------------------------------------
     // VDP2 rendering
 
+    bool resChangedToInterlaced = false;
     uint32 HRes = kDefaultResH;
     uint32 VRes = kDefaultResV;
     bool exclusiveMonitor = false;
@@ -4259,12 +4260,24 @@ struct Direct3D12VDPRenderer::Impl {
         VDP2UpdateComposeParams();
     }
 
+    void VDP2SetResolution(uint32 h, uint32 v, bool exclusive) {
+        resChangedToInterlaced = !exclusive && v > vdp::kMaxNormalResV && v != VRes;
+        HRes = h;
+        VRes = v;
+        exclusiveMonitor = exclusive;
+    }
+
     void VDP2BeginFrame() {
         vdp2.nextLayerRenderLine = 0;
         vdp2.nextComposeLine = 0;
 
         VDP2CalcAccessPatterns();
         VDP2InitNBGs();
+
+        vdp2.cpuCommonRenderParams.displayParams.firstInterlacedFrame = resChangedToInterlaced ? 1u : 0u;
+        if (resChangedToInterlaced) {
+            resChangedToInterlaced = false;
+        }
 
         VDP2UpdateState(0);
         for (int i = 0; i < 4; ++i) {
@@ -4715,9 +4728,7 @@ void Direct3D12VDPRenderer::VDP1EndFrame() {
 }
 
 void Direct3D12VDPRenderer::VDP2SetResolution(uint32 h, uint32 v, bool exclusive) {
-    m_impl->HRes = h;
-    m_impl->VRes = v;
-    m_impl->exclusiveMonitor = exclusive;
+    m_impl->VDP2SetResolution(h, v, exclusive);
 }
 
 void Direct3D12VDPRenderer::VDP2SetField(bool odd) {
